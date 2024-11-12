@@ -1,8 +1,7 @@
 services:
   app:
-    image: node:21.7.3-bullseye
+    build: .
     ports:
       - "3000:3000"
-    command: tail -f /dev/null
-    volumes:
-      - .:/code
+    #volumes: # for debugging purpose
+    #  - .:/code

@@ -8,7 +8,6 @@ const PageShelf = ({addbook}) => {
 
   useEffect(() => {
     BooksAPI.getAll().then((books) => {
-      console.log(books);
       setBooks(books);
     });
   }, []);
@@ -17,7 +16,7 @@ const PageShelf = ({addbook}) => {
     // get the book id from the book object
     const bookId = book.id;
 
-    console.log(shelf);
+    console.log(book)
 
     // update the book shelf in the state
     const bookToUpdate = books.find((book) => book.id === bookId);

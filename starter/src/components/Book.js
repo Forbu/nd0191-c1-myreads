@@ -18,12 +18,18 @@ const Book = (props) => {
           <option value="move" disabled>
             Move to...
           </option>
-          <option value="currentlyReading">
+          <option value="currentlyReading" disabled={props.book.shelf === 'currentlyReading'}>
             Currently Reading
           </option>
-          <option value="wantToRead">Want to Read</option>
-          <option value="read">Read</option>
-          <option value="none">None</option>
+          <option value="wantToRead" disabled={props.book.shelf === 'wantToRead'}>
+            Want to Read
+          </option>
+          <option value="read" disabled={props.book.shelf === 'read'}>
+            Read
+          </option>
+          <option value="none" disabled={props.book.shelf === 'none'}>
+            None
+          </option>
         </select>
       </div>
     </div>
