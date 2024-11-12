@@ -47,3 +47,6 @@ The code is actually running but running the npm start give several warnings in 
 
 Also running npm start was not working due to an openssl error. I had to run `NODE_OPTIONS=--openssl-legacy-provider npm start` to make it work.
 
+## Erratum
+
+I did understand at the end of the project that my github commit messages did not comply with the udacity requirements (type: Subject for commit messages), sry ...
