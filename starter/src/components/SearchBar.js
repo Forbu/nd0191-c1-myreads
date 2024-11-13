@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const SearchBar = (props) => {
     return (
         <div className="search-books-bar" >
-        <Link to="/" className="close-search">Close</Link>
+        <Link to="/shelf" className="close-search">Close</Link>
         <div className="search-books-input-wrapper">
           <input 
             type="text" 

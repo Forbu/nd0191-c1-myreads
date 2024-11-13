@@ -3,5 +3,8 @@ services:
     build: .
     ports:
       - "3000:3000"
-    #volumes: # for debugging purpose
-    #  - .:/code
+    # volumes: # for debugging purpose
+    #   - .:/code
+    # command: # useless command to keep the container running
+    #   - sleep
+    #   - infinity
