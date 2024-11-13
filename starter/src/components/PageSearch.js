@@ -10,24 +10,36 @@ const PageSearch = () => {
     const [query, setQuery] = useState("");
     const [results, setResults] = useState([]);
 
-  const searchbooks = (query) => {
-
+  const searchbooks = async (query) => {
     // no big search
     if (query === "") {
         setResults([]);
         return;
     }
 
-    BooksAPI.search(query, 10).then((books) => {
-        // error handling
-        if (books.error) {
-            setResults([]);
-        } else {
-            setResults(books);
-        }
-    });
-  }
+    try {
+      const books = await BooksAPI.search(query, 10);
+      
+      // error handling
+      if (books.error) {
+        setResults([]);
+        return;
+      }
 
+      // Wait for all shelf updates to complete using Promise.all
+      const updatedBooks = await Promise.all(
+        books.map(async (book) => {
+          const bookDetails = await BooksAPI.get(book.id);
+          return { ...book, shelf: bookDetails.shelf };
+        })
+      );
+
+      setResults(updatedBooks);
+    } catch (error) {
+      console.error("Error searching books:", error);
+      setResults([]);
+    }
+  };
 
   const addbooktoShelf = (book, shelf) => {
 
