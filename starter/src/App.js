@@ -17,15 +17,18 @@ function App() {
   }, []);
 
   const addbooktoShelf = (book, shelf) => {
-    // get the book id from the book object
-    const bookId = book.id;
-
-    // update the book shelf in the state
-    const bookToUpdate = books.find((book) => book.id === bookId);
-    bookToUpdate.shelf = shelf;
-    setBooks([...books]);
-
-    // add book to shelf in the database
+    let newBooks = [...books];
+    const bookIndex = newBooks.findIndex((b) => b.id === book.id);
+    
+    if (bookIndex >= 0) {
+      // Update existing book if it already exists
+      newBooks[bookIndex].shelf = shelf;
+    } else {
+      // Add new book if it doesn't exist
+      newBooks.push({ ...book, shelf });
+    }
+    
+    setBooks(newBooks);
     BooksAPI.update(book, shelf);
   }
 
