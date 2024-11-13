@@ -39,10 +39,10 @@ Pages (components but with their own routing with react-router):
 
 ## Data flow
 
-Basicly, the data is imported from the BooksAPI. Each time the page is loaded, the data is fetched from the BooksAPI and stored in the local state.
-We use the `useEffect` hook to fetch the data from the BooksAPI as shown in the udacity course. I wonder how we could avoid this little moment of delay when the page is loaded and we don't have the data yet.
+Basicly, the data is imported from the BooksAPI. Each time the page is loaded, the data is fetched from the BooksAPI and stored in the local state. The main state is located in the `App` component and contain all the current books in the shelves Read, wantToRead and currentlyReading.
+We use the `useEffect` hook to fetch the data from the BooksAPI as shown in the udacity course.
 
-When the user changes the shelf of a book, the change is saved to the BooksAPI and the local state is updated.
+When the user changes the shelf of a book, the change is saved to the BooksAPI and the local state is updated (in the frontend and in the database).
 
 For the search page, the data is fetched from the BooksAPI only when the user starts typing in the search bar.
 
