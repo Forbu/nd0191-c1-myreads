@@ -20,8 +20,6 @@ function App() {
     // get the book id from the book object
     const bookId = book.id;
 
-    console.log(book)
-
     // update the book shelf in the state
     const bookToUpdate = books.find((book) => book.id === bookId);
     bookToUpdate.shelf = shelf;
