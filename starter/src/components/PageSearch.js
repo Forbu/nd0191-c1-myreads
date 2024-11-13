@@ -4,7 +4,7 @@ import BookShelf from "./BookShelf";
 import SearchBar from "./SearchBar";
 import * as BooksAPI from "../BooksAPI";    
 
-const PageSearch = () => {
+const PageSearch = ({books, addbooktoShelf}) => {
 
     // state variables
     const [query, setQuery] = useState("");
@@ -18,34 +18,27 @@ const PageSearch = () => {
     }
 
     try {
-      const books = await BooksAPI.search(query, 10);
+      const result_query = await BooksAPI.search(query, 10);
       
       // error handling
-      if (books.error) {
+      if (result_query.error) {
         setResults([]);
         return;
       }
 
-      // Wait for all shelf updates to complete using Promise.all
-      const updatedBooks = await Promise.all(
-        books.map(async (book) => {
-          const bookDetails = await BooksAPI.get(book.id);
-          return { ...book, shelf: bookDetails.shelf };
-        })
-      );
+      // update the shelf of the books
+      const updatedBooks = result_query.map((book) => {
+        const bookDetails = books.find((b) => b.id === book.id);
+        return { ...book, shelf: bookDetails ? bookDetails.shelf : "none" };
+      });
 
       setResults(updatedBooks);
+
     } catch (error) {
       console.error("Error searching books:", error);
       setResults([]);
     }
   };
-
-  const addbooktoShelf = (book, shelf) => {
-
-    // add book to shelf in the database
-    BooksAPI.update(book, shelf);
-  }
 
   //init search bar and display results
   return (

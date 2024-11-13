@@ -2,30 +2,9 @@ import { Link } from "react-router-dom";
 import * as BooksAPI from "../BooksAPI";
 import BookShelf from "./BookShelf";
 import { useState, useEffect } from "react";
-const PageShelf = () => {
 
-  const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    BooksAPI.getAll().then((books) => {
-      setBooks(books);
-    });
-  }, []);
-
-  const addbooktoShelf = (book, shelf) => {
-    // get the book id from the book object
-    const bookId = book.id;
-
-    console.log(book)
-
-    // update the book shelf in the state
-    const bookToUpdate = books.find((book) => book.id === bookId);
-    bookToUpdate.shelf = shelf;
-    setBooks([...books]);
-
-    // add book to shelf in the database
-    BooksAPI.update(book, shelf);
-  }
+const PageShelf = ({books, addbooktoShelf}) => {
 
 
   return  <div className="list-books">
