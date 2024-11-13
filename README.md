@@ -9,7 +9,7 @@ So this is the myRead project from Udacity course on react fundamentals.
 
 But you can also run the project with docker:
 
-1. `docker compose up`
+1. `docker compose up -d`
 
 Then open the browser and go to `http://localhost:3000`
 
@@ -18,6 +18,10 @@ Then open the browser and go to `http://localhost:3000`
 Here are a global architecture of the project in term of components.
 
 ![Global architecture](images/global-architecture.png)
+
+Lastly we add the login component.
+
+![Login component](images/login.png)
 
 ## Main components
 
@@ -31,6 +35,7 @@ Pages (components but with their own routing with react-router):
 
 - `PageSearch` - a component that allows to search for books and add them to the shelf.
 - `PageShelf` - a component that displays all books and allows to edit their shelf.
+- `Login` - a component that display the login bar
 
 ## Data flow
 
@@ -43,7 +48,7 @@ For the search page, the data is fetched from the BooksAPI only when the user st
 
 ## Warnings
 
-The code is actually running but running the npm start give several warnings in the console due to deprecated methods.
+The code is actually running but running the npm start give several warnings in the console due to future deprecated methods.
 
 Also running npm start was not working due to an openssl error. I had to run `NODE_OPTIONS=--openssl-legacy-provider npm start` to make it work.
 

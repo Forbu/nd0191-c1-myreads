@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+// mock data for the login
 const data_login = {
     username: "Reviewer",
     password: "123456"
